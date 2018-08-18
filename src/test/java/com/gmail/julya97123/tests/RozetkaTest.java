@@ -7,6 +7,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class RozetkaTest {
@@ -45,7 +47,7 @@ public class RozetkaTest {
     @Test
     public void Category() {
         openCategory();
-        closeBanner();
+        //closeBanner();
         WebElement categotyName = webDriver.findElement(By.xpath("//h1[@class='pab-h1']"));
         String categoryNameContainer = categotyName.getText();
         Assert.assertEquals(categoryNameContainer, "Комп'ютери та ноутбуки");
@@ -61,10 +63,10 @@ public class RozetkaTest {
         WebElement goodsName = webDriver.findElement(By.xpath("//div[@class='g-i-tile-i-title clearfix']"));
         String goodsNameString = goodsName.getText();
 
-        WebElement addToBasketButton = webDriver.findElement(By.xpath("//button[@class='btn-link-i']"));
-        addToBasketButton.click();
-
-        WebElement basketGoods = webDriver.findElement(By.xpath("//a[@class='novisited cart-i-title-link']"));
+        List<WebElement> addToBasketButton = webDriver.findElements(By.xpath("//button[@class='btn-link-i']"));
+        
+        //waiting while basket page is loading
+        WebElement basketGoods = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[@class='novisited cart-i-title-link']")));
         Assert.assertEquals(goodsNameString, basketGoods.getText());
 
         WebElement optionButton = webDriver.findElement(By.xpath("//a[@class='cart-check']"));
@@ -100,7 +102,6 @@ public class RozetkaTest {
             banner.click();
         }
     }
-
 
 
 }
