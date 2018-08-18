@@ -25,26 +25,6 @@ public class RozetkaTest {
     }
 
     @Test
-    public void signIn() {
-        closeBanner();
-        WebElement signInButton = webDriver.findElement(By.xpath("//a[@name='signin']"));
-        signInButton.click();
-
-        WebElement loginField = webDriver.findElement(By.xpath("(//div[@class='auth-f-i']/input)[1]"));
-        loginField.sendKeys("yuliialysenko97@gmail.com");
-
-        WebElement passField = webDriver.findElement(By.xpath("(//div[@class='auth-f-i']/input)[2]"));
-        passField.sendKeys("Yuliia97");
-
-        WebElement submitButton = webDriver.findElement(By.xpath("//span[@class='btn-link btn-link-blue']/button"));
-        submitButton.click();
-
-        //waiting while signIn page is loading
-        WebElement closeMessage = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//div[@class='social-bind social-bind-tiny']/a")));
-        closeMessage.click();
-    }
-
-    @Test
     public void Category() {
         openCategory();
         //closeBanner();
@@ -63,11 +43,11 @@ public class RozetkaTest {
         WebElement goodsName = webDriver.findElement(By.xpath("//div[@class='g-i-tile-i-title clearfix']"));
         String goodsNameString = goodsName.getText();
 
-        List<WebElement> addToBasketButton = webDriver.findElements(By.xpath("//button[@class='btn-link-i']"));
-        
-        //waiting while basket page is loading
-        WebElement basketGoods = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[@class='novisited cart-i-title-link']")));
-        Assert.assertEquals(goodsNameString, basketGoods.getText());
+        WebElement addToCartButton = webDriver.findElement(By.xpath("//button[@class='btn-link-i']"));
+        addToCartButton.click();
+        //waiting while cart page is loading
+        WebElement cartGoods = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[@class='novisited cart-i-title-link']")));
+        Assert.assertEquals(goodsNameString, cartGoods.getText());
 
         WebElement optionButton = webDriver.findElement(By.xpath("//a[@class='cart-check']"));
         optionButton.click();
@@ -75,7 +55,7 @@ public class RozetkaTest {
         WebElement deleteButton = webDriver.findElement(By.xpath("//a[@name='delete']"));
         deleteButton.click();
 
-        //waiting while goods is deleting from basket
+        //waiting while goods is deleting from cart
         WebElement closeMessage = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//h2[@class='empty-cart-title inline sprite-side']")));
         closeMessage.click();
 
@@ -84,10 +64,7 @@ public class RozetkaTest {
 
     @AfterClass
     public static void tearDown() {
-        WebElement profileButton = webDriver.findElement(By.xpath("//a[@name='profile']"));
-        profileButton.click();
-        WebElement logOut = webDriver.findElement(By.xpath("//a[@class='profile-m-edit-signout']"));
-        logOut.click();
+        webDriver.manage().deleteAllCookies();
         webDriver.quit();
     }
 
