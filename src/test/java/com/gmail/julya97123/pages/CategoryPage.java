@@ -19,14 +19,15 @@ public class CategoryPage {
     @FindBy(xpath = "//h1[@class='pab-h1']")
     private WebElement categotyName;
 
-    public String getCategoryHref(){
+    public String getCategoryHref() {
         return webDriver.getCurrentUrl();
     }
-    public String getCategoryButtonHref(){
+
+    public String getCategoryButtonHref() {
         return categoryButton.getAttribute("href");
     }
 
-    public void clickCategoryButton(){
+    public void clickCategoryButton() {
         categoryButton.click();
     }
 

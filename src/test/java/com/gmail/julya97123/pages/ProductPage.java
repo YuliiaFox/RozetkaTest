@@ -5,16 +5,12 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.LoadableComponent;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
 
 public class ProductPage {
     public WebDriver webDriver;
 
     public ProductPage(WebDriver webDriver) {
-        PageFactory.initElements(webDriver,this);
+        PageFactory.initElements(webDriver, this);
         this.webDriver = webDriver;
     }
 
@@ -25,24 +21,16 @@ public class ProductPage {
     @FindBy(xpath = "//button[@class='btn-link-i']")
     private WebElement addToCartButton;
 
-    public void clickManufacturerButton(){
+    public void clickManufacturerButton() {
         manufacturer.click();
     }
-    public void clickAddToCartButton(){
+
+    public void clickAddToCartButton() {
         addToCartButton.click();
     }
-    public String getProductName(){
+
+    public String getProductName() {
         return product.getText();
     }
 
-    /*protected void load() {
-        new WebDriverWait(webDriver,10).until(ExpectedConditions.visibilityOfElementLocated
-                (By.xpath("//div[@class='wrap-cart-not-empty  with-cart-amount']")));
-    }
-
-    protected void isLoaded() throws Error {
-        if(webDriver.findElement(By.xpath("//div[@class='wrap-cart-not-empty  with-cart-amount']")).isDisplayed()){
-            System.out.println("Cart is open");
-        }
-    }*/
 }

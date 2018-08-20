@@ -29,24 +29,25 @@ public class SignInPage {
     @FindBy(xpath = "//span[@class='btn-link btn-link-blue']/button")
     private WebElement submitButton;
 
-    //@FindBy(xpath = "//div[@class='social-bind social-bind-tiny']/a")
     private WebElement closeMessage;
 
-    public void inputLogin(String login){
+    public void inputLogin(String login) {
         loginField.sendKeys(login);
     }
 
-    public void inputPassword(String pass){
+    public void inputPassword(String pass) {
         passField.sendKeys(pass);
     }
-    public void clickSignInForm(){
+
+    public void clickSignInForm() {
         signInButton.click();
     }
 
-    public void clickSubmitButton(){
+    public void clickSubmitButton() {
         submitButton.click();
     }
-    public void clickToCloseMessage(){
+
+    public void clickToCloseMessage() {
         closeMessage = waitingLoadElement("//div[@class='social-bind social-bind-tiny']/a");
         closeMessage.click();
     }

@@ -17,7 +17,6 @@ public class CartPage {
         this.webDriver = webDriver;
     }
 
-    /* @FindBy(xpath = "//a[@class='novisited cart-i-title-link']")*/
     private WebElement productFromCart;
     private WebElement closeCartButton;
     @FindBy(xpath = "//a[@class='cart-check']")
@@ -40,25 +39,26 @@ public class CartPage {
         return productFromCart.getText();
     }
 
-    public void clickCloseCartButton(){
+    public void clickCloseCartButton() {
         loadDeletingProductFromCartButton();
         closeCartButton.click();
     }
-    public void clickCloseCartPageButton(){
+
+    public void clickCloseCartPageButton() {
         closeCartPageButton.click();
     }
 
     private void loadCartPage() {
         productFromCart = waitingLoadElement("//a[@class='novisited cart-i-title-link']");
-        //"//div[@class='wrap-cart-not-empty  with-cart-amount']"
     }
-    private void loadDeletingProductFromCartButton(){
+
+    private void loadDeletingProductFromCartButton() {
         closeCartButton = waitingLoadElement("//h2[@class='empty-cart-title inline sprite-side']");
 
     }
 
     private WebElement waitingLoadElement(String xpathString) throws WebDriverException {
-       return new WebDriverWait(webDriver, 10).until(ExpectedConditions.visibilityOfElementLocated
+        return new WebDriverWait(webDriver, 10).until(ExpectedConditions.visibilityOfElementLocated
                 (By.xpath(xpathString)));
     }
 

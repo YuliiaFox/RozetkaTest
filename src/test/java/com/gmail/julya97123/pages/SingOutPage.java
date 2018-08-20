@@ -19,11 +19,11 @@ public class SingOutPage {
     @FindBy(xpath = "//a[@class='profile-m-edit-signout']")
     private WebElement logOutButton;
 
-    public void clickProfileButton(){
+    public void clickProfileButton() {
         profileButton.click();
     }
 
-    public void clickLogOutButton(){
+    public void clickLogOutButton() {
         logOutButton.click();
     }
 }
